@@ -5,6 +5,7 @@ import numpy as np
 import requests
 import bs4
 from bs4 import BeautifulSoup
+#import stockstats as st
 
 def stock_data():
     r = requests.get("https://www.moneycontrol.com/stocks/marketstats/indexcomp.php?optex=NSE&opttopic=indexcomp&index=9")
@@ -60,7 +61,7 @@ def stock_data():
 data = stock_data()
 #print(data.head(10))
 
-
+'''
 #function to print the data scraped from the website every 30 seconds for the next 'x' minutes
 def print_stock_data(x):
 
@@ -103,3 +104,20 @@ def change_alert(threshold):
                 print("\nAlert: Company %s has gone up!", data2["Company Name"][index[i]])
     if count == 0:
         print("Everything is fine. No market fluctuation.")
+change_alert(2)
+
+#Use Last price at the beginning as Open, and Close at the end of each time instance
+data1 = stock_data()
+#sleep for two minutes
+sleep(120)
+data2 = stock_data()
+
+data = data1['LastPrice'].copy()
+data = pd.DataFrame(data)
+data.columns = ['open']
+close = data2['LastPrice'].copy()
+data['close'] = close
+
+'''
+
+
